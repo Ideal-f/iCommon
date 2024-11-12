@@ -18,7 +18,7 @@ type Role struct {
 }
 
 const (
-	headerCacheSpan = 43200 // redis缓存时间 单位:秒 默认12小时
+	headerRedisCacheSpan = 43200 // redis缓存时间 单位:秒 默认12小时
 )
 
 // RenderHeader 解析header
