@@ -1,12 +1,15 @@
 package BaseController
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"iCommon/BaseController/common"
+)
 
 type Base struct {
 	GinContent *gin.Context
-	Uri        *Uri
-	Header     *Header
-	Token      *Token
+	Uri        *common.Uri
+	Header     *common.Header
+	Token      *common.Token
 }
 
 func (t *Base) InitBase(ginContent *gin.Context) {
@@ -14,12 +17,21 @@ func (t *Base) InitBase(ginContent *gin.Context) {
 	t.GinContent = ginContent
 
 	// 解析token信息
-	t.RenderToken()
+	if t.Token == nil {
+		t.Token = new(common.Token)
+	}
+	t.Token.RenderToken(t.GinContent)
 
 	// 解析uri信息
-	t.RenderHeader()
+	if t.Uri == nil {
+		t.Uri = new(common.Uri)
+	}
+	t.Uri.RenderUri(t.GinContent)
 
 	// 解析header信息
-	t.RenderHeader()
+	if t.Header == nil {
+		t.Header = new(common.Header)
+	}
+	t.Header.RenderHeader(t.GinContent)
 
 }

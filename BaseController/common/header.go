@@ -1,4 +1,6 @@
-package BaseController
+package common
+
+import "github.com/gin-gonic/gin"
 
 type Header struct {
 	StaffId     int          `json:"staff_id"`
@@ -22,14 +24,13 @@ const (
 )
 
 // RenderHeader 解析header
-func (t *Base) RenderHeader() {
+func (t *Header) RenderHeader(GinContent *gin.Context) {
 	// 初始化header信息
-	t.Header = &Header{}
 
 	// 如果没有token信息则返回
-	if t.Token.token == "" {
-		return
-	}
+	//if t.Token.token == "" {
+	//	return
+	//}
 
 	// 根据token信息获取redis用户信息
 

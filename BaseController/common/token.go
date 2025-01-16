@@ -1,7 +1,8 @@
-package BaseController
+package common
 
 import (
 	"errors"
+	"github.com/gin-gonic/gin"
 	"time"
 )
 
@@ -24,12 +25,10 @@ const (
 )
 
 // RenderToken 解析token
-func (t *Base) RenderToken() {
-	// 初始化token信息
-	t.Token = &Token{}
+func (t *Token) RenderToken(GinContent *gin.Context) {
 
 	// 获取header中的token
-	t.Token.token = t.GinContent.GetHeader("token")
+	t.token = GinContent.GetHeader("token")
 
 	// 从redis里面获取token信息
 
@@ -39,10 +38,10 @@ func (t *Base) RenderToken() {
 }
 
 // RefreshToken 刷新token
-func (t *Base) RefreshToken() (err error) {
+func (t *Token) RefreshToken() (err error) {
 
 	// 失去活跃多久，可以刷新token
-	if (t.Token.LastActiveTime + tokenRefreshSpan) < time.Now().Unix() {
+	if (t.LastActiveTime + tokenRefreshSpan) < time.Now().Unix() {
 		err = errors.New("token刷新超时")
 		return
 	}
@@ -55,16 +54,16 @@ func (t *Base) RefreshToken() (err error) {
 }
 
 // checkToken 检查token有效期
-func (t *Base) checkToken(isAutoRefresh bool) (errCode int, err error) {
+func (t *Token) checkToken(isAutoRefresh bool) (errCode int, err error) {
 	// 检查token是否为空
-	if t.Token.token == "" {
+	if t.token == "" {
 		errCode = 100401
 		err = errors.New("请先登录，登录信息为空！")
 		return
 	}
 
 	// 检查token是否过期
-	if t.Token.ExpireTime < time.Now().Unix() {
+	if t.ExpireTime < time.Now().Unix() {
 		if isAutoRefresh {
 			// 刷新token
 			err = t.RefreshToken()
