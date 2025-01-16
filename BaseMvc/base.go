@@ -1,7 +1,7 @@
-package BaseController
+package BaseMvc
 
 import (
-	"github.com/Ideal-f/iCommon/BaseController/common"
+	"github.com/Ideal-f/iCommon/BaseMvc/common"
 	"github.com/gin-gonic/gin"
 )
 

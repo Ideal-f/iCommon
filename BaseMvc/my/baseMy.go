@@ -1,12 +1,12 @@
 package my
 
 import (
-	"github.com/Ideal-f/iCommon/BaseController"
+	"github.com/Ideal-f/iCommon/BaseMvc"
 	"github.com/gin-gonic/gin"
 )
 
 type BaseMy struct {
-	*BaseController.Base
+	*BaseMvc.Base
 }
 
 func (t *BaseMy) Init(ginContent *gin.Context) {
