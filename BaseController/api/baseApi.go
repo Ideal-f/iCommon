@@ -1,8 +1,8 @@
 package api
 
 import (
+	"github.com/Ideal-f/iCommon/BaseController"
 	"github.com/gin-gonic/gin"
-	"iCommon/BaseController"
 )
 
 type BaseApi struct {

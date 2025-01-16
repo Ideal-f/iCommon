@@ -1,8 +1,8 @@
 package BaseController
 
 import (
+	"github.com/Ideal-f/iCommon/BaseController/common"
 	"github.com/gin-gonic/gin"
-	"iCommon/BaseController/common"
 )
 
 type Base struct {

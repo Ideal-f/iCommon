@@ -1,6 +1,6 @@
 package unitTest
 
-import "iCommon/bootstrap"
+import "github.com/Ideal-f/iCommon/bootstrap"
 
 func init() {
 	// 初始化引用模块
