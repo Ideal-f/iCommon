@@ -1,4 +1,4 @@
-module github.com/Ideal-f/iCommon.git
+module github.com/Ideal-f/iCommon
 
 go 1.20
 
